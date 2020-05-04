@@ -266,6 +266,9 @@ def diameter (networkArray, start, step):                       # Calculates Net
 # Import from Raw Data - Calculation of Coefficients
 numberOfNodes, numberOfEdges, degrees, degreeDistList, avgDegree, maxDegree  = networkOverTime()
 highdegree, networkArray, degreeSorted = networkOverTime2()
+
+
+# Calculation of Coefficients
 diameterList = diameter(networkArray, 10, 10)
 averageShortestPathLengthList = averageShortestPathLength(networkArray, 10, 10)
 averageCoef, coefcomplete = clusteringCoefficient(highdegree, networkArray)
@@ -273,15 +276,7 @@ precalcBetweennessCentrality(10, 10, networkArray)
 betweennessCentralityDict, averageBetweennessCentrality = betweennessCentrality(10, 10, highdegree)
 
 
-# Import of intermediate results from Json Files - Calculation of Coefficients
-diameterList = diameter(networkArray, 10, 10)
-averageShortestPathLengthList = averageShortestPathLength(networkArray, 10, 10)
-averageCoef, coefcomplete = clusteringCoefficient(highdegree, networkArray)
-precalcBetweennessCentrality(10, 10, networkArray)
-betweennessCentralityDict, averageBetweennessCentrality = betweennessCentrality(10, 10, highdegree)
-
-
-# Plotting of coefficients
+# Plotting functions of coefficients
 def plot_number_of_nodes (numberOfNodes):
     x = range(len(numberOfNodes))
     fig = plt.figure()
@@ -448,3 +443,17 @@ def plot_average_shortest_path (averageShortestPathLengthList):
     ax.set_ylabel('Average Shortest Path Lengths', color='black')
     plt.savefig('averageShortestPathLengths.png')
     plt.show()
+
+
+# Plotting of figures
+plot_number_of_nodes(numberOfNodes)
+plot_number_of_edges(numberOfEdges)
+plot_average_degree(avgDegree)
+plot_maximum_degree(maxDegree)
+plot_degree_dist(degreeDistlist, [10, 70])
+plot_gamma(gamma_list)
+plot_clustering(complete_list_of_cc, average_cc)
+plot_betweenness_centrality(betweennessCentralityDict, averageBetweennessCentrality)
+plot_load_centrality(loadCentralityDict, averageLoadCentrality)
+plot_diameter(diameterList)
+plot_average_shortest_path(averageShortestPathLengthList)
